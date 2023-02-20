@@ -1,25 +1,29 @@
 <?php
+
+error_reporting(E_ALL);
+
+// get the selected class and sandwich from the request
+$class = $_POST['class'];
+$sandwich = $_POST['sandwich'];
+
+// set up database connection
 $host = "localhost";
-$username = "paninaro";
-$password = "TrKbx8MHkHqC8!Kv";
+$username = "paninarofix";
+$password = "panini54321";
 $dbname = "school_orders";
 
-$conn = mysqli_connect($host, $username, $password, $dbname);
-
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+$conn = new mysqli($host, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-$studentClass = $_POST["student-class"];
-$studentSandwich = $_POST["student-sandwich"];
+var_dump($dbname);
 
-$sql = "INSERT INTO orders (student_class, sandwich) VALUES ('$studentClass', '$studentSandwich')";
+// prepare and execute the SQL statement to insert the order into the database
+$stmt = $conn->prepare("INSERT INTO orders (class, sandwich) VALUES (?, ?)");
+$stmt->bind_param("ss", $class, $sandwich);
+$stmt->execute();
 
-if (mysqli_query($conn, $sql)) {
-  echo "Order saved!";
-} else {
-  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
-
-mysqli_close($conn);
+// close the database connection
+$conn->close();
 ?>

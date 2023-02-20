@@ -1,24 +1,34 @@
 <?php
+
+ini_set('display_errors', 1);
+
+// set up database connection
 $host = "localhost";
-$username = "paninaro";
-$password = "TrKbx8MHkHqC8!Kv";
+$username = "paninarofix";
+$password = "panini54321";
 $dbname = "school_orders";
 
-$conn = mysqli_connect($host, $username, $password, $dbname);
-
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+$conn = new mysqli($host, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM orders";
-$result = mysqli_query($conn, $sql);
+var_dump($dbname);
 
-$orders = [];
-while ($row = mysqli_fetch_assoc($result)) {
-  $orders[] = $row;
+// prepare and execute the SQL statement to get all orders from the database
+$result = $conn->query("SELECT * FROM orders");
+$orders = array();
+if ($result->num_rows > 0) {
+    // fetch each row and add it to the orders array
+    while ($row = $result->fetch_assoc()) {
+        $orders[] = array("class" => $row["class"], "sandwich" => $row["sandwich"]);
+    }
 }
 
+// close the database connection
+$conn->close();
+
+// output the orders array as JSON
+header("Content-Type: application/json");
 echo json_encode($orders);
-
-mysqli_close($conn);
 ?>
