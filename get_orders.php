@@ -29,6 +29,6 @@ if ($result->num_rows > 0) {
 $conn->close();
 
 // output the orders array as JSON
-header("Content-Type: application/json");
+// header("Content-Type: application/json"); (removed)
 echo json_encode($orders);
 ?>

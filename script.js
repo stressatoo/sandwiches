@@ -44,13 +44,13 @@ xhr.send();
 const orderForm = document.getElementById("order-form");
 
 // Add event listener to the order form
-orderForm.addEventListener("click", (e) => {
+orderForm.addEventListener("submit", (e) => {
   // Prevent the default form submission
   e.preventDefault();
-
+  console.log("here's a test");
   // Get the values of the selected class and sandwich
-  const selectedClass = document.getElementById("class-select").value;
-  const selectedSandwich = document.getElementById("sandwich-select").value;
+  const selectedClass = document.getElementById("class").value;
+  const selectedSandwich = document.getElementById("sandwich").value;
 
   // Send the order data to the server
   const xhr = new XMLHttpRequest();

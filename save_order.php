@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 var_dump($dbname);
 
 // prepare and execute the SQL statement to insert the order into the database
-$stmt = $conn->prepare("INSERT INTO orders (class, sandwich) VALUES (?, ?)");
+$stmt = $conn->prepare("INSERT INTO orders (`student-class`, sandwich) VALUES (?, ?)");
 $stmt->bind_param("ss", $class, $sandwich);
 $stmt->execute();
 
