@@ -1,8 +1,0 @@
-CREATE TABLE IF NOT EXISTS orders (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  class TEXT,
-  top TEXT,
-  bottom TEXT
-);
-
-INSERT INTO orders (class, top, bottom) VALUES ('Class 1', 'Tomato', 'Cheese');
