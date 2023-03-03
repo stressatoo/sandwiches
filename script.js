@@ -77,6 +77,7 @@ const loadOrders = () => {
   xhr.open("GET", "get_orders.php");
   xhr.onload = function () {
     if (xhr.status === 200) {
+      console.log(xhr.responseText);
       const orders = JSON.parse(xhr.responseText);
       ordersList.innerHTML = "";
 
@@ -99,3 +100,7 @@ const loadOrders = () => {
 loadOrders();
 setInterval(loadOrders, 5000);
 console.log("success at script.js line 101 (EOL)");
+/*
+$data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+var_dump($data);
+*/

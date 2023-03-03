@@ -17,9 +17,13 @@ var_dump($dbname);
 
 // prepare and execute the SQL statement to get all orders from the database
 $result = $conn->query("SELECT * FROM orders");
+$data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+var_dump($data);
 $orders = array();
 if ($result->num_rows > 0) {
     // fetch each row and add it to the orders array
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    var_dump($data);
     while ($row = $result->fetch_assoc()) {
         $orders[] = array("class" => $row["class"], "sandwich" => $row["sandwich"]);
     }

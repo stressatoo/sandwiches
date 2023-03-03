@@ -1,9 +1,8 @@
 <?php
-
 error_reporting(E_ALL);
 
 // get the selected class and sandwich from the request
-$class = $_POST['class'];
+$class = $_POST['student-class'];
 $sandwich = $_POST['sandwich'];
 
 // set up database connection
@@ -17,6 +16,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+var_dump($_POST);
 var_dump($dbname);
 
 // prepare and execute the SQL statement to insert the order into the database
