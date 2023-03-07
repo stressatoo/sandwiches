@@ -2,11 +2,10 @@
 <html>
 <head>
   <title>JustLevi</title>
-  <script src="script.js"></script>
 </head>
 <body>
   <h1>Ordinazioni</h1>
-  <table id="orders-table">
+  <table id="ordersTable">
     <thead>
       <tr>
         <th>Classe</th>
@@ -17,4 +16,5 @@
     </tbody>
   </table>
 </body>
+<script src="script.js"></script>
 </html>
