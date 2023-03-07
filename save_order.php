@@ -21,7 +21,15 @@ var_dump($dbname);
 
 // prepare and execute the SQL statement to insert the order into the database
 $stmt = $conn->prepare("INSERT INTO orders (`student_class`, sandwich) VALUES (?, ?)");
+if (!$stmt) {
+    echo "Error preparing statement: " . $conn->error;
+    exit();
+}
 $stmt->bind_param("ss", $class, $sandwich);
+if (!$stmt->execute()) {
+    echo "Error executing statement: " . $stmt->error;
+    exit();
+}
 $stmt->execute();
 
 // close the database connection
