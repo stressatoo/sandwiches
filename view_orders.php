@@ -8,15 +8,15 @@ ini_set('display_errors', 1);
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>View Orders</title>
+    <title>JustLevi | Paninaro</title>
 </head>
 <body>
-    <h1>Orders</h1>
+    <h1>Ordinazioni</h1>
     <table>
         <thead>
             <tr>
-                <th>Class</th>
-                <th>Sandwich</th>
+                <th>Classe</th>
+                <th>Panino</th>
             </tr>
         </thead>
         <tbody id="orders"></tbody>

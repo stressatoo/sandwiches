@@ -11,10 +11,10 @@ document.getElementById("order-btn").addEventListener("click", function() {
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
       // The order was successfully saved to the database
-      alert("Your order has been placed!");
+      alert("Il tuo ordine è stato effettuato correttamente!"); // Scendi alle ore x o ore y
     } else if (xhr.readyState === 4 && xhr.status !== 200) {
       // There was an error saving the order to the database
-      alert("There was an error placing your order. Please try again.");
+      alert("Abbiamo riscontrato un errore, per favore, ritenta.");
     }
   };
   xhr.send("class=" + classSelected + "&sandwich=" + sandwichSelected);
@@ -29,7 +29,7 @@ xhr.onreadystatechange = function() {
     var orders = JSON.parse(xhr.responseText);
 
     // Build the HTML table to display the orders
-    var tableHtml = "<table><thead><tr><th>Class</th><th>Sandwich</th></tr></thead><tbody>";
+    var tableHtml = "<table><thead><tr><th>Classe</th><th>Panino</th></tr></thead><tbody>";
     for (var i = 0; i < orders.length; i++) {
       tableHtml += "<tr><td>" + orders[i].class + "</td><td>" + orders[i].sandwich + "</td></tr>";
     }
@@ -49,8 +49,8 @@ orderForm.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("here's a test");
   // Get the values of the selected class and sandwich
-  const selectedClass = document.getElementById("class").value;
-  const selectedSandwich = document.getElementById("sandwich").value;
+  const selectedClass = document.getElementById("class-select").value;
+  const selectedSandwich = document.getElementById("sandwich-select").value;
 
   // Send the order data to the server
   const xhr = new XMLHttpRequest();
@@ -61,7 +61,7 @@ orderForm.addEventListener("submit", (e) => {
       console.log(xhr.responseText);
       orderForm.reset();
     } else {
-      console.log("Request failed.  Returned status of " + xhr.status);
+      console.log("Richiesta fallita. Status: " + xhr.status);
     }
   };
   xhr.send(`class=${selectedClass}&sandwich=${selectedSandwich}`);
@@ -69,6 +69,7 @@ orderForm.addEventListener("submit", (e) => {
 
 // Get the orders list
 const ordersList = document.getElementById("orders-list");
+console.log("Got orders-list at line 72");
 
 // Load the orders from the server
 const loadOrders = () => {
@@ -85,12 +86,13 @@ const loadOrders = () => {
       orders.forEach((order) => {
         const li = document.createElement("li");
         li.appendChild(
-          document.createTextNode(`Class: ${order.class}, Sandwich: ${order.sandwich}`)
+          document.createTextNode(`Classe: ${order.class}, Panino: ${order.sandwich}`)
         );
+        console.log("Got out of li.appendChild() at line 91");
         ordersList.appendChild(li);
       });
     } else {
-      console.log("Request failed.  Returned status of " + xhr.status);
+      console.log("Richiesta fallita. Status: " + xhr.status);
     }
   };
   xhr.send();
@@ -99,7 +101,7 @@ const loadOrders = () => {
 // Load the orders initially and then poll the server every 5 seconds
 loadOrders();
 setInterval(loadOrders, 5000);
-console.log("success at script.js line 101 (EOL)");
+console.log("Success at script.js line 104 (EOF)");
 /*
 $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 var_dump($data);
