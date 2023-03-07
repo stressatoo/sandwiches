@@ -72,36 +72,30 @@ const ordersList = document.getElementById("orders-list");
 console.log("Got orders-list at line 72");
 
 // Load the orders from the server
-const loadOrders = () => {
-  // Send an HTTP GET request to the server
-  const xhr = new XMLHttpRequest();
-  xhr.open("GET", "get_orders.php");
-  xhr.onload = function () {
+function getOrders() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'get_orders.php');
+  xhr.onload = function() {
     if (xhr.status === 200) {
-      console.log(xhr.responseText);
-      const orders = JSON.parse(xhr.responseText);
-      ordersList.innerHTML = "";
-
-      // Loop through the orders and display them in the list
-      orders.forEach((order) => {
-        const li = document.createElement("li");
-        li.appendChild(
-          document.createTextNode(`Classe: ${order.class}, Panino: ${order.sandwich}`)
-        );
-        console.log("Got out of li.appendChild() at line 91");
-        ordersList.appendChild(li);
+      var orders = JSON.parse(xhr.responseText);
+      var tableBody = document.querySelector('#orders-table tbody');
+      tableBody.innerHTML = '';
+      orders.forEach(function(order) {
+        var row = document.createElement('tr');
+        row.innerHTML = '<td>' + order['student_class'] + '</td>' +
+                        '<td>' + order['sandwich'] + '</td>';
+        tableBody.appendChild(row);
       });
-    } else {
-      console.log("Richiesta fallita. Status: " + xhr.status);
     }
   };
   xhr.send();
-};
+}
 
 // Load the orders initially and then poll the server every 5 seconds
-loadOrders();
-setInterval(loadOrders, 5000);
-console.log("Success at script.js line 104 (EOF)");
+getOrders();
+setInterval(getOrders, 5000);
+
+console.log("Success at script.js line 98 (EOF)");
 /*
 $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 var_dump($data);
