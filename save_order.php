@@ -1,9 +1,14 @@
 <?php
 error_reporting(E_ALL);
 
+if (!isset($_POST['class-select']) && !isset($_POST['sandwich-select'])) {
+    http_response_code(400);
+    die('Error: missing form fields.');
+}
+
 // get the selected class and sandwich from the request
-$class = $_POST['student_class'];
-$sandwich = $_POST['sandwich'];
+$class = $_POST['class-select'];
+$sandwich = $_POST['sandwich-select'];
 
 // set up database connection
 $host = "localhost";
@@ -25,11 +30,13 @@ if (!$stmt) {
     echo "Error preparing statement: " . $conn->error;
     exit();
 }
+
 $stmt->bind_param("ss", $class, $sandwich);
 if (!$stmt->execute()) {
-    echo "Error executing statement: " . $stmt->error;
-    exit();
+    http_response_code(500);
+    die("Error saving order: " . $stmt->error);
 }
+
 $stmt->execute();
 
 // close the database connection
