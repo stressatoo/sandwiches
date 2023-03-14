@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JustLevi</title>
+  <title>Sfamalan</title>
 </head>
 <body>
   <h1>Ordinazioni</h1>
@@ -9,7 +9,7 @@
     <thead>
       <tr>
         <th>Classe</th>
-        <th>Panino</th>
+        <th>Prodotto</th>
       </tr>
     </thead>
     <tbody>

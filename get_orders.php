@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 
-// get the database connection
+// connette al database
 $host = "localhost";
 $username = "paninarofix";
 $password = "panini54321";
@@ -9,14 +9,14 @@ $dbname = "school_orders";
 
 $conn = new mysqli($host, $username, $password, $dbname);
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connessione fallita: " . $conn->connect_error);
 }
 
-// retrieve orders from the database
+// ottiene gli ordini dal database
 $sql = "SELECT * FROM orders";
 $result = $conn->query($sql);
 
-// create an array to hold the orders
+// crea un vettore per tenere gli ordini
 $orders = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -24,9 +24,9 @@ if ($result->num_rows > 0) {
     }
 }
 
-// close the database connection
+// interrompe la connessione al database
 $conn->close();
 
-// return the orders as JSON
+// restituisce gli ordini come JSON
 echo json_encode($orders);
 ?>

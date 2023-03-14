@@ -15,7 +15,7 @@ fetch('get_orders.php')
       row.appendChild(classCell);
       row.appendChild(sandwichCell);
       ordersTable.appendChild(row);
-      console.log("Success at view_orders.js line 18");
+      console.log("Check L18");
     });
   })
   .catch(error => console.error(error));

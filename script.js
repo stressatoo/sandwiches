@@ -1,17 +1,17 @@
 var dl = console.log.bind(console, "DEBUG: ");
-// check if we're on the view orders page
+// controlla se siamo sulla pagina view_orders.php
 if (window.location.pathname.includes("view_orders.php")) {
   const ordersTable = document.getElementById("ordersTable");
 
-  // make an AJAX request to get the orders
+  // effettua una richiesta AJAX per ottenere gli ordini
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       if (xhr.status === 200) {
-        // parse the response as JSON
+        // parse come JSON
         const orders = JSON.parse(xhr.responseText);
 
-        // loop through the orders and add them to the table
+        // cicla tra gli ordini e inserisce su ordersTable
         for (const order of orders) {
           if (ordersTable) {
             const row = ordersTable.insertRow();
@@ -19,32 +19,32 @@ if (window.location.pathname.includes("view_orders.php")) {
             row.insertCell().textContent = order.student_class;
             row.insertCell().textContent = order.sandwich;
           } else {
-            console.error("ordersTable is null");
+            console.error("ordersTable == null");
           }
         }
       } else {
-        console.error("Error getting orders: " + xhr.status);
+        console.error("Errore nell'ottenimento degli ordini: " + xhr.status);
       }
     }
   };
   xhr.open("GET", "get_orders.php");
   xhr.send();
 } else {
-  // submit order form
+  // esegue l'ordine
   const orderForm = document.getElementById("order-form");
   orderForm.addEventListener("submit", function (event) {
     event.preventDefault();
     const formData = new FormData(orderForm);
-    // make an AJAX request to save the order
+    // effettua una richiesta AJAX per salvare l'ordine
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          alert("Order submitted successfully!");
-          dl("Order submitted successfully!");
+          alert("Ordine effettuato!");
+          dl("Ordine effettuato!");
           orderForm.reset();
         } else {
-          console.error("Error saving order: " + xhr.status);
+          console.error("Errore nel salvataggio dell'ordine: " + xhr.status);
         }
       }
     };

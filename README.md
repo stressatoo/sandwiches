@@ -1,6 +1,6 @@
-# JustLevi
+# Sfamalan
 
-JustLevi is a school project organised by the ITC Primo Levi school; it allows students of each class to choose their type of sandwich and order it, the result gets stored into a database and displayed to the sandwich maker.
+Sfamalan is a school project organised by the ITC Primo Levi school; it allows students of each class to choose their type of sandwich and order it, the result gets stored into a database and displayed to the sandwich maker.
 
 ## Installation
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JustLevi</title>
+    <title>Sfamalan</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <form id="order-form">
         <div class="form-group">
             <label for="class-select">Seleziona la tua classe:</label>
-            <select id="class-select" name="class-select">
+            <select id="class-select" name="class-select" required>
                 <option value="1A">1A</option>
                 <option value="1B">1B</option>
                 <option value="1C">1A</option>
@@ -52,12 +52,16 @@
         </div>
         <div class="form-group">
             <label for="sandwich-select">Seleziona il tuo panino:</label>
-            <select id="sandwich-select" name="sandwich-select">
+            <select id="sandwich-select" name="sandwich-select" required>
                 <option value="Panino 1">Panino 1</option>
                 <option value="Panino 2">Panino 2</option>
                 <option value="Panino 3">Panino 3</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="number_of_sandwiches">Seleziona quanti panini ordinare:</label>
+            <input type="number" class="form-control" id="number_of_sandwiches" name="number_of_sandwiches" min="1" required>
+          </div>
         <button id="order-btn" type="submit">Ordina</button>
     </form>
     <script src="script.js"></script>

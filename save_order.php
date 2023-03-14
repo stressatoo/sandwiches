@@ -6,11 +6,11 @@ if (!isset($_POST['class-select']) && !isset($_POST['sandwich-select'])) {
     die('Error: missing form fields.');
 }
 
-// get the selected class and sandwich from the request
+// ottiene la classe e il panino dalla richiesta
 $class = $_POST['class-select'];
 $sandwich = $_POST['sandwich-select'];
 
-// set up database connection
+// imposta la connessione al database
 $host = "localhost";
 $username = "paninarofix";
 $password = "panini54321";
@@ -24,21 +24,21 @@ if ($conn->connect_error) {
 var_dump($_POST);
 var_dump($dbname);
 
-// prepare and execute the SQL statement to insert the order into the database
+// prepara ed esegue l'istruzione SQL per inserire l'ordine dentro il database
 $stmt = $conn->prepare("INSERT INTO orders (`student_class`, sandwich) VALUES (?, ?)");
 if (!$stmt) {
-    echo "Error preparing statement: " . $conn->error;
+    echo "Errore: " . $conn->error;
     exit();
 }
 
 $stmt->bind_param("ss", $class, $sandwich);
 if (!$stmt->execute()) {
     http_response_code(500);
-    die("Error saving order: " . $stmt->error);
+    die("Errore nel salvataggio dell'ordine: " . $stmt->error);
 }
 
 $stmt->execute();
 
-// close the database connection
+// interrompe la connessione al database
 $conn->close();
 ?>
