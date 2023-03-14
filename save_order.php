@@ -1,14 +1,14 @@
 <?php
 error_reporting(E_ALL);
 
-if (!isset($_POST['class-select']) && !isset($_POST['sandwich-select'])) {
+if (!isset($_POST['selezioneClasse']) && !isset($_POST['selezioneProdotto'])) {
     http_response_code(400);
     die('Error: missing form fields.');
 }
 
 // ottiene la classe e il panino dalla richiesta
-$class = $_POST['class-select'];
-$sandwich = $_POST['sandwich-select'];
+$class = $_POST['selezioneClasse'];
+$sandwich = $_POST['selezioneProdotto'];
 
 // imposta la connessione al database
 $host = "localhost";
